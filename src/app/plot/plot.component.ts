@@ -5,6 +5,9 @@ import TileLayer from 'ol/layer/Tile';
 import Map from 'ol/Map';
 import OSM from 'ol/source/OSM';
 import View from 'ol/View';
+import VectorSource from 'ol/source/Vector';
+import VectorLayer from 'ol/layer/Vector';
+import {Draw, Modify, Snap} from 'ol/interaction.js';
 
 @Component({
   selector: 'app-plot',
@@ -33,6 +36,20 @@ export class PlotComponent implements ControlValueAccessor, AfterViewInit {
   onTouch = () => {};
 
   map: Map = new Map();
+  draw: Draw;
+  snap: Snap;
+
+  source = new VectorSource();
+  vector = new VectorLayer({
+    source: this.source,
+    style: {
+      'fill-color': 'rgba(255, 255, 255, 0.2)',
+      'stroke-color': '#ffcc33',
+      'stroke-width': 2,
+      'circle-radius': 7,
+      'circle-fill-color': '#ffcc33',
+    },
+  });
 
   ngAfterViewInit(): void {
     this.map = new Map({
@@ -46,9 +63,13 @@ export class PlotComponent implements ControlValueAccessor, AfterViewInit {
         new TileLayer({
           source: new OSM(),
         }),
+        this.vector
       ],
       target: this.mapElement?.nativeElement
     });
+    
+    const modify = new Modify({source: this.source});
+    this.map.addInteraction(modify);
   }
 
 
@@ -68,4 +89,17 @@ export class PlotComponent implements ControlValueAccessor, AfterViewInit {
     
   }
 
+  addInteractions() {
+    this.map.removeInteraction(this.draw);
+    this.map.removeInteraction(this.snap);
+
+    this.draw = new Draw({
+      source: this.source,
+      type: 'Polygon'
+    });
+    this.map.addInteraction(this.draw);
+    this.snap = new Snap({source: this.source});
+    this.map.addInteraction(this.snap);
+  }
+  
 }
