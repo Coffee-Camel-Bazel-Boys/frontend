@@ -37,8 +37,10 @@ export class PlotComponent implements ControlValueAccessor, AfterViewInit {
   ngAfterViewInit(): void {
     this.map = new Map({
       view: new View({
-        center: [0, 0],
-        zoom: 1,
+        center: [-104.6189, 50.4452],
+        minZoom: 10,
+        zoom: 15,
+        projection: 'EPSG:4326',
       }),
       layers: [
         new TileLayer({
