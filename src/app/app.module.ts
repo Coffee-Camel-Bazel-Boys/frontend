@@ -10,6 +10,8 @@ import { LandSetupComponent } from './routes/land-setup/land-setup.component';
 import { LandCardComponent } from './components/land-card/land-card.component';
 import { MapComponent } from './components/map/map.component';
 import {RouterModule} from "@angular/router";
+import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -19,11 +21,13 @@ import {RouterModule} from "@angular/router";
     LandOverviewComponent,
     LandSetupComponent,
     LandCardComponent,
-    MapComponent
+    MapComponent,
+    NavigationBarComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
