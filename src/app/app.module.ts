@@ -13,6 +13,7 @@ import {NavigationBarComponent} from './components/navigation-bar/navigation-bar
 import {ReactiveFormsModule} from "@angular/forms";
 import {LoginComponent} from './routes/login/login.component';
 import {RegisterComponent} from './routes/register/register.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import {RegisterComponent} from './routes/register/register.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     ReactiveFormsModule
   ],
   providers: [],
