@@ -8,6 +8,9 @@ export class LandService {
 
   constructor() { }
 
+  save(land: any) {
+    throw "Not implemented";
+  }
 
 
   getLotFeatures(extent: Array<number>) {

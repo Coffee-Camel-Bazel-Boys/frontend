@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { createPlot, Plot } from 'src/app/models/plot';
+import { LandService } from 'src/app/services/land.service';
 
 @Component({
   selector: 'app-land-setup',
@@ -8,6 +9,10 @@ import { createPlot, Plot } from 'src/app/models/plot';
   styleUrls: ['./land-setup.component.scss']
 })
 export class LandSetupComponent {
+
+  constructor(private landService: LandService) {
+
+  }
 
   formGroup: FormGroup = new FormGroup({
     details: new FormControl(),
@@ -26,5 +31,10 @@ export class LandSetupComponent {
   addPlot(): void {
     this.plots.push(new FormControl(createPlot(`${this.plots.controls.length + 1}`)))
   }
+
+  save(): void {
+    this.landService.save(this.formGroup.value);
+  }
 }
+
 
