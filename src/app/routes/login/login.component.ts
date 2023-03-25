@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
   }
 
   async handleCredentialResponse(response: any) {
+    console.log(response);
     if(!response || !response.credential) {
       return;
     }
