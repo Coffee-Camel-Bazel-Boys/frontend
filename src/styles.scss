@@ -16,3 +16,12 @@
 .btn-primary:hover {
     @apply bg-blue-700;
 }
+
+input {
+    @apply border border-slate-500;
+    height: 1.5rem;
+}
+
+label {
+    height: 1.5rem;
+}
