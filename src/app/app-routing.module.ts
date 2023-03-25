@@ -4,6 +4,7 @@ import {DashboardComponent} from "./routes/dashboard/dashboard.component";
 import {SearchResultsComponent} from "./routes/search-results/search-results.component";
 import {LoginComponent} from "./routes/login/login.component";
 import {LandSetupComponent} from "./routes/land-setup/land-setup.component";
+import {LandOverviewComponent} from "./routes/land-overview/land-overview.component";
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: "land-setup",
     component: LandSetupComponent
+  },
+  {
+    path: "land/:landId",
+    component: LandOverviewComponent
   },
   {
     path: "",

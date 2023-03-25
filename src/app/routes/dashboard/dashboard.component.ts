@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {LandSummary} from "../../models/land-summary.model";
 
 @Component({
   selector: 'app-dashboard',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
+
+  mockLandSummaries: LandSummary[] = [
+    {
+      landId: '78998328490',
+      priceMin: 15,
+      priceMax: 25
+    }
+  ]
 
 }
