@@ -28,9 +28,9 @@ textarea {
     @apply border border-slate-500;
 }
 
-input {
-    @apply border border-slate-500;
-    height: 1.5rem;
+input:not(.search-bar) {
+  @apply border border-slate-500;
+  height: 1.5rem;
 }
 
 label {

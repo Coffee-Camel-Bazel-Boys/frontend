@@ -13,6 +13,7 @@ import {NavigationBarComponent} from './components/navigation-bar/navigation-bar
 import {ReactiveFormsModule} from "@angular/forms";
 import {LoginComponent} from './routes/login/login.component';
 import {RegisterComponent} from './routes/register/register.component';
+import {HttpClientModule} from "@angular/common/http";
 import { PlotComponent } from './plot/plot.component';
 
 @NgModule({
@@ -32,6 +33,7 @@ import { PlotComponent } from './plot/plot.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     ReactiveFormsModule
   ],
   providers: [],
