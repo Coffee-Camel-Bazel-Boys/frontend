@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, forwardRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, forwardRef, OnDestroy, ViewChild, ViewContainerRef } from '@angular/core';
 import { ControlValueAccessor, FormControl, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Plot } from '../models/plot';
 import TileLayer from 'ol/layer/Tile';
@@ -8,6 +8,9 @@ import View from 'ol/View';
 import VectorSource from 'ol/source/Vector';
 import VectorLayer from 'ol/layer/Vector';
 import {Draw, Modify, Snap} from 'ol/interaction.js';
+import { interval, Subscription, timeout } from 'rxjs';
+import { Observable } from 'ol';
+import VectorEventType from 'ol/source/VectorEventType';
 
 @Component({
   selector: 'app-plot',
@@ -20,20 +23,29 @@ import {Draw, Modify, Snap} from 'ol/interaction.js';
     }  
   ]
 })
-export class PlotComponent implements ControlValueAccessor, AfterViewInit {
+export class PlotComponent implements ControlValueAccessor, AfterViewInit, OnDestroy {
 
   @ViewChild('olMap')
   mapElement: ElementRef | undefined;
 
-  plot = {};
+  plot: Plot = {
+    id: undefined,
+    landId: undefined,
+    plotNumber: "",
+    description: "",
+    price: "",
+    shape: []
+  };
 
   formGroup: FormGroup = new FormGroup({
-    description: new FormControl(),
-    price: new FormControl()
+    description: new FormControl(""),
+    price: new FormControl("")
   });
 
-  onChange = () => {};
+  onChange = (a:Plot) => {};
   onTouch = () => {};
+
+  subs: Array<Subscription> = [];
 
   map: Map = new Map();
   draw: Draw;
@@ -48,8 +60,12 @@ export class PlotComponent implements ControlValueAccessor, AfterViewInit {
       'stroke-width': 2,
       'circle-radius': 7,
       'circle-fill-color': '#ffcc33',
-    },
+    }
   });
+
+  ngOnDestroy(): void {
+    this.subs.forEach(sub=> sub.unsubscribe())
+  }
 
   ngAfterViewInit(): void {
     this.map = new Map({
@@ -70,6 +86,14 @@ export class PlotComponent implements ControlValueAccessor, AfterViewInit {
     
     const modify = new Modify({source: this.source});
     this.map.addInteraction(modify);
+    console.log(this.source);
+
+    this.subs.push(this.formGroup.valueChanges.subscribe(() => {
+      this.plot.description = this.formGroup.get("description")?.value as string;
+      this.plot.description = this.formGroup.get("price")?.value as string;
+      this.onChange(this.plot);
+    })
+    )
   }
 
 
@@ -100,6 +124,18 @@ export class PlotComponent implements ControlValueAccessor, AfterViewInit {
     this.map.addInteraction(this.draw);
     this.snap = new Snap({source: this.source});
     this.map.addInteraction(this.snap);
+
+    // this.snap.on("change", a => console.log(a));
+    this.draw.on('drawend', (e:any) => {
+      const coordinates = e.feature.getGeometry().getCoordinates()      ;
+      console.log(coordinates);
+      this.plot.shape = [];
+      coordinates.forEach((element: Array<string>) => {
+        this.plot.shape.push({x:element[0], y: element[1]});
+      });
+      // this.plot.shape = 
+      this.onChange(this.plot);
+    });
   }
   
 }
