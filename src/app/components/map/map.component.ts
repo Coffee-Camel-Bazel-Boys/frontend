@@ -3,6 +3,7 @@ import Map from 'ol/Map';
 import View from 'ol/View';
 import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
+import MapboxVectorLayer from "ol/layer/MapboxVector";
 
 @Component({
   selector: 'app-map',
@@ -23,6 +24,10 @@ export class MapComponent implements OnInit {
         new TileLayer({
           source: new OSM(),
         }),
+        new MapboxVectorLayer({
+          styleUrl:
+            'https://api.maptiler.com/maps/bright/style.json?key=lirfd6Fegsjkvs0lshxe',
+        })
       ],
       target: 'ol-map'
     });
