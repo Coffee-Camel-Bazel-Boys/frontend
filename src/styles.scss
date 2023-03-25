@@ -17,6 +17,13 @@
     @apply bg-blue-700;
 }
 
+.btn-secondary {
+    @apply border-2 border-blue-500 text-slate-600;
+}
+.btn-primary:hover {
+    @apply bg-blue-700;
+}
+
 textarea {
     @apply border border-slate-500;
 }
