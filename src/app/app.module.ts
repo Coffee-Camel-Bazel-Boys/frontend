@@ -12,6 +12,8 @@ import { MapComponent } from './components/map/map.component';
 import {RouterModule} from "@angular/router";
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import { LoginComponent } from './routes/login/login.component';
+import { RegisterComponent } from './routes/register/register.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import {ReactiveFormsModule} from "@angular/forms";
     LandSetupComponent,
     LandCardComponent,
     MapComponent,
-    NavigationBarComponent
+    NavigationBarComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
