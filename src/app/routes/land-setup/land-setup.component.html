@@ -1,5 +1,8 @@
+<div>
+    <button class="block btn btn-primary mt-8 mr-8 w-64 ml-auto" (click)="save()">Save</button>
+</div>
+
 <div class="grid grid-cols-1 m-8" id="details" [formGroup]="formGroup">
-    <button class="btn btn-primary mt-8 w-64" (click)="save()">Save</button>
     <label>Details</label>
     <textarea class="w-64" formControlName="details"></textarea>
     <label>Plots</label>
