@@ -1,8 +1,8 @@
-<div class="grid grid-cols-2">
-    <div id="details" class="grid grid-cols-1" [formGroup]="formGroup">
-        <label for="description">Description</label>
+<div class="container">
+    <div id="details" [formGroup]="formGroup">
+        <div for="description">Description</div>
         <input #description class="mr-4" formControlName="description"/>
-        <label for="Price">Price</label>
+        <div for="Price">Price</div>
         <input #Price class="mr-4" formControlName="price"/>
     </div>
     <div #olMap id="ol-map" class="bg-slate-100">

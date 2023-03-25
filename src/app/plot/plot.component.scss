@@ -1,8 +1,24 @@
 :host {
     display: block;
     height: 300px;
+    // border: 1px #666 solid
+}
+
+.container {
+    display: flex;
 }
 
 #ol-map {
     height: calc(300px - 2rem);
+    width: 500px;
+    left: 0rem;
+}
+
+#details {
+    margin: 1rem 4rem;
+}
+
+#details>*{
+    display: block;
+    margin-left: 4rem;
 }
