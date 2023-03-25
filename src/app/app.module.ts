@@ -14,6 +14,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {LoginComponent} from './routes/login/login.component';
 import {RegisterComponent} from './routes/register/register.component';
 import {HttpClientModule} from "@angular/common/http";
+import { PlotComponent } from './plot/plot.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {HttpClientModule} from "@angular/common/http";
     MapComponent,
     NavigationBarComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    PlotComponent
   ],
   imports: [
     BrowserModule,

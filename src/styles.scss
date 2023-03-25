@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.w-64 {
+    width: 16rem;
+}
+
+.btn {
+    @apply font-bold py-2 px-4 rounded;
+}
+
+.btn-primary {
+    @apply bg-blue-500 text-white;
+}
+.btn-primary:hover {
+    @apply bg-blue-700;
+}
+
+textarea {
+    @apply border border-slate-500;
+}
+
+input {
+    @apply border border-slate-500;
+    height: 1.5rem;
+}
+
+label {
+    height: 1.5rem;
+}

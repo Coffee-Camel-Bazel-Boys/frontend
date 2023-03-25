@@ -1,1 +1,10 @@
-<p>land-setup works!</p>
+<div class="grid grid-cols-1 m-8" id="details" [formGroup]="formGroup">
+    <label>Details</label>
+    <textarea class="w-64" formControlName="details"></textarea>
+    <label>Plots</label>
+    <div formArrayName="plots">
+        <app-plot *ngFor="let sport of plots.controls; let i = index" [formControlName]="i"></app-plot>
+    </div>
+    <button class="btn btn-primary mt-8 w-64" (click)="addPlot()">Add plot</button>
+</div>
+  

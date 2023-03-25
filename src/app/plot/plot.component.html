@@ -1,0 +1,13 @@
+<div class="container">
+    <div id="details" [formGroup]="formGroup">
+        <div for="description">Description</div>
+        <input #description class="mr-4" formControlName="description"/>
+        <div for="Price">Price</div>
+        <input #Price class="mr-4" formControlName="price"/>
+        <button class="btn btn-primary" (click)="addInteractions()">Set Boundaries</button>
+    </div>
+    <div #olMap id="ol-map" class="bg-slate-100">
+    </div>
+</div>
+  
+  
