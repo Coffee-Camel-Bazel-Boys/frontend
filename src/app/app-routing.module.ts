@@ -5,12 +5,12 @@ import {SearchResultsComponent} from "./routes/search-results/search-results.com
 
 const routes: Routes = [
   {
-    path: "",
-    component: DashboardComponent
-  },
-  {
     path: "search",
     component: SearchResultsComponent
+  },
+  {
+    path: "",
+    component: DashboardComponent
   }
 ];
 

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {Router} from "@angular/router";
 
 @Component({
@@ -9,13 +9,20 @@ import {Router} from "@angular/router";
 })
 export class NavigationBarComponent {
 
-  searchControl = new FormControl();
+  // needs to be a formGroup for ngSubmit event
+  searchForm: FormGroup = new FormGroup({
+    search: new FormControl()
+  });
 
   constructor(private router: Router) {
   }
 
+  navigateToDashboard() {
+    this.router.navigate([""]);
+  }
+
   search() {
-    this.router.navigate(["search"], {queryParams: {results: this.searchControl.value}});
+    this.router.navigate(["search"], {queryParams: {results: this.searchForm.get('search')?.value}});
   }
 
 }
