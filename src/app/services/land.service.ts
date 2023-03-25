@@ -1,17 +1,20 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environment/environment';
+import {HttpClient} from "@angular/common/http";
+import {LandSummary} from "../models/land-summary.model";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class LandService {
 
-  constructor() { }
+  private readonly SERVICE_URL = `${environment.bffUrl}/api/lands`;
 
   save(land: any) {
     throw "Not implemented";
   }
-
+  constructor(private httpClient: HttpClient) { }
 
   getLotFeatures(extent: Array<number>) {
     // Assuming a magic proxy :)
@@ -19,5 +22,9 @@ export class LandService {
     'version=1.1.0&request=GetFeature&typename=community&' +
     'outputFormat=application/json&srsname=EPSG:3857&' +
     'bbox=' + extent.join(',') + ',EPSG:3857';
+   }
+
+   findAllLand(): Observable<LandSummary> {
+      return this.httpClient.get<LandSummary>(this.SERVICE_URL);
    }
 }

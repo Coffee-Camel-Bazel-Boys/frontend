@@ -7,8 +7,13 @@
 
     <form (ngSubmit)="search()" [formGroup]="searchForm">
       <input formControlName="search" class="rounded-lg p-2 w-96 search-bar" placeholder="Location" type="text">
+      <ul class="autocomplete-results">
+        <li class="block bg-white p-2 hover:bg-slate-200 cursor-pointer" *ngFor="let place of places"
+          (click)="selectPlace(place)">
+          {{place.address}}
+        </li>
+      </ul>
     </form>
-
 
     <div class="flex text-white gap-6">
       <a href="land-setup">List your garden</a>
