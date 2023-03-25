@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {LandSummary} from "../../models/land-summary.model";
 
 @Component({
   selector: 'app-land-card',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./land-card.component.scss']
 })
 export class LandCardComponent {
+
+  @Input() landSummary: LandSummary;
 
 }
