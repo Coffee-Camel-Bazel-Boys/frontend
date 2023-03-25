@@ -1,4 +1,7 @@
 <div class="flex h-full w-full">
+  <div *ngFor="let landSummary of mockLandSummaries">
+    <app-land-card [landSummary]="landSummary"></app-land-card>
+  </div>
   <app-map></app-map>
 </div>
 
