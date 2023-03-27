@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {environment} from "../../../environment/environment";
-import {UserService} from "../../services/user.service";
-import {Router} from "@angular/router";
-import {LoginModel} from "../../models/login.model";
+import { Component, OnInit } from '@angular/core';
+import { environment } from "../../../environment/environment";
+import { UserService } from "../../services/user.service";
+import { Router } from "@angular/router";
+import { LoginModel } from "../../models/login.model";
 
 @Component({
   selector: 'app-login',
@@ -12,7 +12,7 @@ import {LoginModel} from "../../models/login.model";
 export class LoginComponent implements OnInit {
 
   constructor(private userService: UserService,
-              private router: Router) {
+    private router: Router) {
   }
 
   ngOnInit(): void {
@@ -30,17 +30,18 @@ export class LoginComponent implements OnInit {
       { theme: "outline", size: "large", width: "100%" }
     );
     // @ts-ignore
-    google.accounts.id.prompt((notification: PromptMomentNotification) => {});
+    google.accounts.id.prompt((notification: PromptMomentNotification) => { });
   }
 
   async handleCredentialResponse(response: any) {
-    console.log(response);
-    if(!response || !response.credential) {
+    if (!response || !response.credential) {
+      this.router.navigate(["/login"]);
       return;
     }
 
-    const loginCredentials: LoginModel = {loginToken: response.credential};
-    this.userService.login(loginCredentials).subscribe(user => this.router.navigate([""]));
+    const loginCredentials: LoginModel = { loginToken: response.credential };
+    //TODO: Assign to user-service here, or something
+    this.userService.login(loginCredentials).subscribe(user => this.router.navigate(["/"]));
   }
 
 }
